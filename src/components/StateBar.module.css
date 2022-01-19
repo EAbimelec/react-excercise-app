@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   --color: #ffF;
+  --need-state: %;
 }
 
 .state-bar {
@@ -22,7 +23,7 @@
   margin: 0;
   border: none;
   background-color: var(--color);
-  width: 50%;
+  width: var(--need-state);
 }
 
 p {

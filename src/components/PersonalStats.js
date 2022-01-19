@@ -4,31 +4,38 @@ import styles from "./PersonalStats.module.css";
 
 function PersonalStats(props) {
 
-  const personalStats = styles["personal-stats"] 
+  const personalStats = styles["personal-stats"];
+  const needStates = [10, 50, 35, 25, 30, 2];
   const statisticTypes = {
     physicalActivity: {
       label:"PhysicalActivity",
-      colorBar:"#FF5403"
+      colorBar:"#FF5403",
+      needState: `${needStates[0]}%`
     },
     socialNeeds: {
       label:"Social Needs",
-      colorBar:"#FFE162"
+      colorBar:"#FFE162",
+      needState: `${needStates[1]}%`
     },
     hygiene: {
       label:"Hygiene",
-      colorBar:"#F5F5F5"
+      colorBar:"#F5F5F5",
+      needState: `${needStates[2]}%`
     },
     sleep: {
       label:"Sleep",
-      colorBar:"#683aad"
+      colorBar:"#683aad",
+      needState: `${needStates[3]}%`
     },
     hedonism: {
       label:"Hedonism",
-      colorBar:"#A13333"
+      colorBar:"#A13333",
+      needState: `${needStates[4]}%`
     },
     thrist: {
       label:"Thrist",
-      colorBar:"#4FBDBA"
+      colorBar:"#4FBDBA",
+      needState: `${needStates[5]}%`
     }
   };
 

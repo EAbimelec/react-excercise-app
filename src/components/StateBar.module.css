@@ -1,0 +1,57 @@
+.bar-container {
+  display: flex;
+  align-items: center;
+  --color: #ffF;
+}
+
+.state-bar {
+  display: flex;
+
+  height: 5vh;
+  width: 100%;
+  margin: 10px 0;
+
+  border: solid 3px;
+  border-color: black;
+  background-color: transparent;
+}
+
+.state-bar::after {
+  content: '';
+  position: relative;
+  margin: 0;
+  border: none;
+  background-color: var(--color);
+  width: 50%;
+}
+
+p {
+  z-index: 1;
+  padding-left: 10px;
+  margin: 10px 0;
+  position: absolute;
+}
+
+.physical-activity {
+  background-color: #FF5403;
+}
+
+.social-needs {
+  background-color: #FFE162;
+}
+
+.hygiene {
+  background-color: #F5F5F5;
+}
+
+.sleep {
+  background-color: #683aad;
+}
+
+.hedonism {
+  background-color: #A13333;
+}
+
+.thrist {
+  background-color: #4FBDBA;
+}

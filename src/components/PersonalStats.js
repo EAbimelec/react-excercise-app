@@ -1,21 +1,49 @@
 import React from "react";
 import StateBar from "./StateBar";
-import "./PersonalStats.css";
+import styles from "./PersonalStats.module.css";
 
 function PersonalStats(props) {
 
-  const statisticTypes = {};
+  const personalStats = styles["personal-stats"] 
+  const statisticTypes = {
+    physicalActivity: {
+      label:"PhysicalActivity",
+      colorBar:"#FF5403"
+    },
+    socialNeeds: {
+      label:"Social Needs",
+      colorBar:"#FFE162"
+    },
+    hygiene: {
+      label:"Hygiene",
+      colorBar:"#F5F5F5"
+    },
+    sleep: {
+      label:"Sleep",
+      colorBar:"#683aad"
+    },
+    hedonism: {
+      label:"Hedonism",
+      colorBar:"#A13333"
+    },
+    thrist: {
+      label:"Thrist",
+      colorBar:"#4FBDBA"
+    }
+  };
+
   return(
-    <div className="personal-stats">
+    <div className={personalStats}>
       <h1>
         {props.characterName}
       </h1>
-      <StateBar statisticType="physical-activity" label="Physical Activity" colorBar="#FF5403"/> 
-      <StateBar statisticType="social-needs" label="Social Needs"/> 
-      <StateBar statisticType="hygiene" label="Hygiene"/> 
-      <StateBar statisticType="sleep" label="Sleep"/>
-      <StateBar statisticType="thrist" label="Thirst"/>
-      <StateBar statisticType="hedonism" label="Hedonism"/> 
+      
+      <StateBar {...statisticTypes.physicalActivity}/> 
+      <StateBar {...statisticTypes.socialNeeds}/> 
+      <StateBar {...statisticTypes.hygiene}/> 
+      <StateBar {...statisticTypes.sleep}/>
+      <StateBar {...statisticTypes.hedonism}/>
+      <StateBar {...statisticTypes.thrist}/> 
     </div>
   );
 }

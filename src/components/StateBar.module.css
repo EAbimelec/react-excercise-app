@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   --color: #ffF;
-  --need-state: %;
+  --need-state: 20%;
 }
 
 .state-bar {
@@ -32,7 +32,7 @@ p {
   margin: 10px 0;
   position: absolute;
 }
-
+/* 
 .physical-activity {
   background-color: #FF5403;
 }
@@ -55,4 +55,4 @@ p {
 
 .thrist {
   background-color: #4FBDBA;
-}
+} */

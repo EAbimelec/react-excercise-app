@@ -9,12 +9,12 @@ function PersonalStats(props) {
     physicalHealth: {
       label:"Physical Health",
       colorBar:"#A13333",
-      needState: `50%`
+      needState: 100
     },
     mentalHealth: {
       label:"Mental Health",
       colorBar:"#4FBDBA",
-      needState: `20%`
+      needState: 100
     }
   };
 

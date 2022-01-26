@@ -5,20 +5,35 @@ import "./Login.css";
 
 class Login extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+
   render() {
 
+    let title = `${this.state.username}'s personal assistant`
+    let usernameLength = this.state.username.length;
     return(
       
       <Container>
         <Row className="justify-content-center">
-            <h2 className="text-light text-center py-3">Personal assistant</h2>
+
+            <h2 className="text-light text-center py-3">{usernameLength ? title : 'Your personal assistant' }</h2>
           <Col lg={4} md={5} sm={7} xs={9}>
 
             <Form className="text-light pt-4 px-3">
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter username" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter username"
+                  value={this.state.username}  
+                  onChange={(e) => this.setState({username: e.target.value})}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -27,7 +42,10 @@ class Login extends React.Component {
               </Form.Group>
 
               <div className="d-flex justify-content-center">
-                <Button className="ml-2" variant="outline-light" type="submit">
+                <Button 
+                  className="ml-2" 
+                  variant="outline-light" 
+                  type="submit">
                   Submit
                 </Button>
               </div>

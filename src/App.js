@@ -1,9 +1,13 @@
 import './App.css';
-import PersonalStats from './components/PersonalStats';
+// import PersonalStats from './components/PersonalStats';
+import Login from "./components/Login";
 
 function App() {
   return (
-    <PersonalStats characterName="Erick"/>
+    <div className='main-container'>
+      {/* <PersonalStats characterName="Erick"/> */}
+      <Login/>
+    </div>
   );
 }
 

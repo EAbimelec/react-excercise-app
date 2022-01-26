@@ -1,4 +1,8 @@
-body {
+.main-container {
   background-color: #072227;
-  margin: 5%;
+  height: 100vh;
+}
+
+h1 {
+  color: #FFF;
 }

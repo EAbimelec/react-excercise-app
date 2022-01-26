@@ -42,7 +42,14 @@ class StateBar extends React.Component {
       "--need-state": `${this.state.needState}%`
     };
     return(
-      <div style={this.barState} className={this.barContainer} onClick={this.handleClick} onKeyPress={this.handleKeys} tabIndex="0">
+      <div 
+        style={this.barState} 
+        className={this.barContainer}
+        onClick={this.handleClick} 
+        onKeyPress={this.handleKeys} 
+        tabIndex="0"
+      >
+
         <p>{this.props.label}</p>
         <div className={styles["state-bar"]}></div>
       </div>

@@ -3,6 +3,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
 import "./Login.css";
 
+const users = {
+  Erick : {
+    password : 'contrasenagenerica'
+  },
+
+  Christian : {
+    password : 'pagale mas a erick'
+  }
+  
+}
+
 class Login extends React.Component {
 
   constructor(props){
@@ -11,6 +22,22 @@ class Login extends React.Component {
       username: '',
       password: ''
     };
+    this.login = this.login.bind(this);
+  }
+
+  login(e) {
+    e.preventDefault();
+    let inputUsername = this.state.username
+
+    if (users[inputUsername]) {
+      if (users[inputUsername].password === this.state.password) {
+        console.log('Adelante');
+      } else {
+        console.log('Nombre o contrasena equivocados');
+      }
+    } else {
+      console.log('El usuario no existe');
+    }
   }
 
   render() {
@@ -33,19 +60,26 @@ class Login extends React.Component {
                   type="text" 
                   placeholder="Enter username"
                   value={this.state.username}  
-                  onChange={(e) => this.setState({username: e.target.value})}/>
+                  onChange={(e) => this.setState({username: e.target.value})}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                onChange={(e) => this.setState({password: e.target.value})}
+                />
               </Form.Group>
 
               <div className="d-flex justify-content-center">
                 <Button 
                   className="ml-2" 
                   variant="outline-light" 
-                  type="submit">
+                  type="submit"
+                  onClick={(e) => this.login(e)}
+                  >
                   Submit
                 </Button>
               </div>

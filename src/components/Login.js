@@ -5,7 +5,7 @@ import "./Login.css";
 
 const users = {
   Erick : {
-    password : 'contrasenagenerica'
+    password : 'erick'
   },
 
   Christian : {
@@ -30,11 +30,14 @@ class Login extends React.Component {
     let inputUsername = this.state.username
 
     if (users[inputUsername]) {
+      
       if (users[inputUsername].password === this.state.password) {
         console.log('Adelante');
+        this.props.setLogged(true);        
       } else {
         console.log('Nombre o contrasena equivocados');
       }
+
     } else {
       console.log('El usuario no existe');
     }
@@ -48,8 +51,7 @@ class Login extends React.Component {
       
       <Container>
         <Row className="justify-content-center">
-
-            <h2 className="text-light text-center py-3">{usernameLength ? title : 'Your personal assistant' }</h2>
+          <h2 className="text-light text-center py-3">{usernameLength ? title : 'Your personal assistant' }</h2>
           <Col lg={4} md={5} sm={7} xs={9}>
 
             <Form className="text-light pt-4 px-3">
@@ -83,12 +85,10 @@ class Login extends React.Component {
                   Submit
                 </Button>
               </div>
-              
+     
             </Form>  
           </Col>
-
         </Row>
-      
       </Container>
     );
   }

@@ -7,11 +7,9 @@ const users = {
   Erick : {
     password : 'erick'
   },
-
   Christian : {
     password : 'pagale mas a erick'
   }
-  
 }
 
 class Login extends React.Component {

@@ -1,12 +1,7 @@
 import './App.css';
-import PersonalStats from './components/PersonalStats';
 import Login from "./components/Login";
 import React, { useState } from 'react';
-
-const pages = {
-  login : <Login/>,
-  personalStats : <PersonalStats/>,
-};
+import HomePage from './components/HomePage';
 
 function App() {
 
@@ -19,7 +14,7 @@ function App() {
       );
 
     } else {
-      return <h2>Another Page</h2>;
+      return <HomePage/>;
     }
   };
 

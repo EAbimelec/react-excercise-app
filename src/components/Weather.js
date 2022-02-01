@@ -1,51 +1,107 @@
-import React, { useState } from "react";
-import {Container ,Card, Button, Row, Col, Offcanvas} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {Container, Card, Button, Row, Col, Offcanvas, CardGroup} from "react-bootstrap";
 
 
-const apiKey = {
-  key: "27d83fbc86d9840f902119dd350b9a7a",
-  base: "api.openweathermap.org/data/2.5/"
+const api = {
+  key : "27d83fbc86d9840f902119dd350b9a7a",
+  base : "https://api.openweathermap.org/data/2.5/",
+  img : "https://openweathermap.org/img/wn/",
+  iconEnd : '@2x.png',
+  lat : '20.671113',
+  lon : '-103.439942',
 }
 
 const Weather = function() {
-  
-  const [showTodayWheather, setShowTodayWeather] = useState(false);
+ 
+  const [offCanvas, setOffCanvas] = useState({show : false, weatherTitle : ''});
+  const [weatherData, setWeatherData] = useState({});
 
-  const handleClose = () => setShowTodayWeather(false);
-  const handleShow = () => setShowTodayWeather(true);
+  const handleShow = (date) => {
+    let update = {};
+    if(date === 'today'){
+      update = {show : true, weatherTitle : 'The weather today'};
+      setOffCanvas(update);
+    } else {
+      update = {show : true, weatherTitle : 'Weekly weather forecast'};
+      setOffCanvas(update);
+    }
+  };
+  const handleClose = () => setOffCanvas({show : false, weatherTitle : ''});
+  
+  const apiRequest = `${api.base}/onecall?lat=${api.lat}&lon=${api.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${api.key}`;
+  useEffect(() => {
+    console.log(apiRequest);
+    fetch(apiRequest)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      setWeatherData ({
+        current : data.current.weather[0],
+        week : data.daily
+      });
+
+    }); 
+
+    
+
+  }, []);
 
   return(
     <Container className="mt-4">
       <Row>
         <Col>
-          <Button onClick={handleShow}>Show Today Weather</Button>
-          <Offcanvas show={showTodayWheather} onHide={handleClose} placement='top' className="h-75">
+          <Button className="mx-3 btn-info" onClick={() => handleShow('today')}>Show Today Weather</Button>
+          <Button className="mx-3 btn-info" onClick={() => handleShow('week')}>show the week's weather</Button>
+      
+          <Offcanvas show={offCanvas.show} onHide={handleClose} placement='top' style={{height : '65vh'}}>
+
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Weather</Offcanvas.Title>
+              <Offcanvas.Title>{offCanvas.weatherTitle}</Offcanvas.Title>
             </Offcanvas.Header>
+
             <Offcanvas.Body className="d-flex justify-content-center">
-              <TodayWeather/>
+
+              <TodayWeather weatherData={weatherData}/>
+
             </Offcanvas.Body>
+
           </Offcanvas>
+          
         </Col>
       </Row>
     </Container>
   );
 };
 
-const TodayWeather = function() {
+const TodayWeather = function(props) {
+  console.log(props.weatherData.week[0].weather);
   return(
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <CardGroup>
+      <Card style={{ width : '150px'}} className="text-center">
+        <Card.Header>
+          <Card.Title>{props.weatherData.current.main}</Card.Title>
+        </Card.Header>
+        <Card.Body>        
+          <Card.Img src={`${api.img}${props.weatherData.current.icon}${api.iconEnd}`} style={{width : '85%'}}/>
+          <Card.Text>
+            {props.weatherData.current.description}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+
+      <Card style={{ width : '150px'}} className="text-center">
+        <Card.Header>
+          <Card.Title>{props.weatherData.week[0].weather[0].main}</Card.Title>
+        </Card.Header>
+        <Card.Body>        
+          <Card.Img src={`${api.img}${props.weatherData.week[0].weather[0].icon}${api.iconEnd}`} style={{width : '85%'}}/>
+          <Card.Text>
+            {props.weatherData.week[0].weather[0].description}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </CardGroup>
   );
 }
  

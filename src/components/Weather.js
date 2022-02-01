@@ -37,7 +37,7 @@ const Weather = function() {
       console.log(data);
 
       setWeatherData ({
-        current : data.current.weather[0],
+        current : data.current,
         week : data.daily
       });
 
@@ -75,29 +75,36 @@ const Weather = function() {
 };
 
 const TodayWeather = function(props) {
-  console.log(props.weatherData.week[0].weather);
+  console.log(props.weatherData.current);
   return(
     <CardGroup>
       <Card style={{ width : '150px'}} className="text-center">
         <Card.Header>
-          <Card.Title>{props.weatherData.current.main}</Card.Title>
+          <Card.Title>Current</Card.Title>
         </Card.Header>
         <Card.Body>        
-          <Card.Img src={`${api.img}${props.weatherData.current.icon}${api.iconEnd}`} style={{width : '85%'}}/>
+          <Card.Img src={`${api.img}${props.weatherData.current.weather[0].icon}${api.iconEnd}`} style={{width : '85%'}}/>
           <Card.Text>
-            {props.weatherData.current.description}
+            {props.weatherData.current.weather[0].description}
           </Card.Text>
+          <Card.Text><div style={{fontWeight: "bold"}}>Tempture</div>{props.weatherData.current.temp}</Card.Text>
+          <Card.Text><div style={{fontWeight: "bold"}}>Humidity</div>{props.weatherData.current.humidity}%</Card.Text>
         </Card.Body>
       </Card>
 
       <Card style={{ width : '150px'}} className="text-center">
         <Card.Header>
-          <Card.Title>{props.weatherData.week[0].weather[0].main}</Card.Title>
+          <Card.Title>Today</Card.Title>
         </Card.Header>
         <Card.Body>        
           <Card.Img src={`${api.img}${props.weatherData.week[0].weather[0].icon}${api.iconEnd}`} style={{width : '85%'}}/>
           <Card.Text>
             {props.weatherData.week[0].weather[0].description}
+          </Card.Text>
+          <Card.Text>
+            <Card.Text><div style={{fontWeight: "bold"}}>Max tempture</div>{props.weatherData.week[0].temp.max}</Card.Text>
+            <Card.Text><div style={{fontWeight: "bold"}}>Max tempture</div>{props.weatherData.week[0].temp.min}</Card.Text>
+            <Card.Text><div style={{fontWeight: "bold"}}>Max tempture</div>{props.weatherData.week[0].humidity}</Card.Text>
           </Card.Text>
         </Card.Body>
       </Card>

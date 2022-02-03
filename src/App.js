@@ -9,9 +9,7 @@ function App() {
 
   const CurrentPage = function() {
     if (logged === false) {
-      return(
-      <Login logged={logged} setLogged={setLogged}/>
-      );
+      return(<Login logged={logged} setLogged={setLogged}/>);
 
     } else {
       return <HomePage/>;
